@@ -1,0 +1,21 @@
+# local_rubo.rules
+# Reglas personalizadas basadas en el laboratorio de seguridad ASIR
+
+# Variables de red de ejemplo
+var HOME_NET 192.168.10.0/24
+var EXTERNAL_NET any
+
+# 1. Accesos SSH desde VM-WIN (192.168.10.4) a VM-KL (192.168.10.6)
+alert tcp 192.168.10.4 any -> 192.168.10.6 22 (msg:"SSH desde VM-WIN hacia VM-KL"; sid:1000001; rev:1;)
+
+# 2. Accesos HTTP desde VM-WIN al servidor web en VM-KL
+alert tcp 192.168.10.4 any -> 192.168.10.6 80 (msg:"HTTP desde VM-WIN hacia VM-KL"; sid:1000002; rev:1;)
+
+# 3. Pings ICMP hacia VM-KL (cualquier origen)
+alert icmp any any -> 192.168.10.6 any (msg:"Ping hacia VM-KL"; sid:1000003; rev:1;)
+
+# 4. Pings ICMP específicos desde VM-WIN hacia VM-KL
+alert icmp 192.168.10.4 any -> 192.168.10.6 any (msg:"Ping desde VM-WIN hacia VM-KL"; sid:1000004; rev:1;)
+
+# 5. Intentos de acceso a YouTube desde VM-KL (ejemplo usando una IP posible de YouTube)
+alert tcp 192.168.10.6 any -> 142.250.200.110 443 (msg:"Acceso a YouTube detectado desde VM-KL"; sid:1000005; rev:1;)

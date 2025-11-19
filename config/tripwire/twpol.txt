@@ -1,0 +1,37 @@
+# Ejemplo simplificado de política de Tripwire para laboratorio
+#
+# ATENCIÓN: esta política es solo un ejemplo educativo. Debe adaptarse
+# al sistema real antes de utilizarse en producción.
+
+@@section POLICY
+
+(
+  rulename = "Root Home",
+  severity = 100
+)
+{
+  /root                       -> $(SEC_CRIT) ;
+  /root/.bashrc               -> $(SEC_CONFIG) ;
+  /root/.bash_profile         -> $(SEC_CONFIG) ;
+}
+
+(
+  rulename = "Boot Scripts",
+  severity = 100
+)
+{
+  /etc/init.d                 -> $(SEC_BIN) ;
+  /etc/rc0.d                  -> $(SEC_BIN) ;
+  /etc/rc1.d                  -> $(SEC_BIN) ;
+  /etc/rc2.d                  -> $(SEC_BIN) ;
+  /etc/rc3.d                  -> $(SEC_BIN) ;
+  /etc/rc4.d                  -> $(SEC_BIN) ;
+  /etc/rc5.d                  -> $(SEC_BIN) ;
+  /etc/rc6.d                  -> $(SEC_BIN) ;
+}
+
+# Ejemplo de exclusiones para reducir falsos positivos (comentadas por defecto)
+# /var/lock/subsys          -> $(IGNORE) ;
+# /var/run                  -> $(IGNORE) ;
+
+@@end POLICY
