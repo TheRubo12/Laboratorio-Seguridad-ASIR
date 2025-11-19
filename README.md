@@ -15,22 +15,16 @@ El entorno incluye:
 - Control de integridad con **Tripwire**
 - Implementación de una **VPN** completa con **OpenVPN + EasyRSA**
 
----
-
-## 📌 Contenidos principales
-
+## Contenidos principales
 ### 1. Configuración del laboratorio
 
 En el directorio `docs/` se incluye el informe original en PDF donde se documenta:
-
 - Instalación e importación de las máquinas virtuales.
 - Configuración de la red NAT NET051.
 - Pruebas de conectividad entre las VMs y salida a Internet.
 
 ### 2. Seguridad perimetral con IPTables
-
 En `config/iptables/iptables_rules.sh` se incluyen reglas de ejemplo:
-
 - Política por defecto **DROP** en INPUT y FORWARD.
 - Permitir tráfico de loopback.
 - Permitir conexiones establecidas/relacionadas.
@@ -41,9 +35,7 @@ En `config/iptables/iptables_rules.sh` se incluyen reglas de ejemplo:
 > Estas reglas están pensadas para un entorno de LAB y deben revisarse antes de usarse en producción.
 
 ### 3. IDS – Detección de intrusiones con Snort
-
 En `config/snort/local_rubo.rules` se añaden reglas personalizadas basadas en el informe:
-
 - Detección de accesos SSH desde VM-WIN a VM-KL.
 - Detección de accesos HTTP desde VM-WIN al servidor web.
 - Detección de pings (ICMP) a VM-KL, incluyendo regla específica para VM-WIN.
@@ -52,17 +44,13 @@ En `config/snort/local_rubo.rules` se añaden reglas personalizadas basadas en e
 Estas reglas se cargan desde `snort.lua` usando la directiva `include` (ver documentación de Snort).
 
 ### 4. Control de integridad con Tripwire
-
 En `config/tripwire/twpol.txt` se incluye un ejemplo de política simplificada que:
-
 - Supervisa directorios críticos (`/root`, `/etc/init.d`, `/etc/rc*.d`).
 - Muestra cómo comentar rutas ruidosas para reducir falsos positivos.
 - Sirve como base para personalizar una política adaptada al entorno real.
 
 ### 5. Implementación de VPN con OpenVPN
-
 En `config/openvpn/server.conf` y `config/openvpn/client.conf` se incluyen configuraciones de ejemplo para:
-
 - Servidor OpenVPN en Linux (VM-KL) usando:
   - `ca.crt`
   - `servidor-UOC.crt`
@@ -78,9 +66,7 @@ y los ficheros de claves.
 
 En `ovpn/rvicentegil@uoc.edu.ovpn` se incluye un ejemplo de configuración de cliente final.
 
----
-
-## 🚀 Cómo usar este repositorio
+## Cómo usar este repositorio
 
 1. Clonar o descargar el repositorio.
 2. Revisar la documentación en `docs/Producto1.pdf`.
@@ -93,17 +79,11 @@ En `ovpn/rvicentegil@uoc.edu.ovpn` se incluye un ejemplo de configuración de cl
 6. Personalizar la política de Tripwire según los directorios de interés.
 7. Configurar OpenVPN siguiendo los ejemplos y verificando la conexión desde un cliente.
 
----
-
-## ⚠️ Aviso
-
+## Aviso
 Todo el contenido de este repositorio está orientado a **aprendizaje y laboratorio**.
 No debe utilizarse sin adaptación ni revisión previa en entornos de producción.
 
----
-
-## 📩 Contacto
-
+## Contacto
 Si quieres comentar sobre el proyecto, mejorar reglas IDS o intercambiar ideas sobre seguridad:
 
-- LinkedIn: *(añade tu enlace aquí)*
+- LinkedIn: (https://www.linkedin.com/in/rubovicente/)
